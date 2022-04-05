@@ -79,7 +79,7 @@ TEST_CASE("Good input") {
         Matrix mat6(m4, 3,3);
 
             
-        vector<double> m3_plus_one = {i+1, 0, 0, i+2, i+1, i+1, 1, 1, i+1};
+        vector<double> m3_plus_one = {i+1, 1, 1, i+2, i+1, i+1, 1, 1, i+1};
         Matrix ans11(m3_plus_one, 3,3);
         CHECK(((mat5++)==ans11)); // check ++ operator
 
