@@ -85,6 +85,11 @@ namespace zich{
         return mat;
     }
 
+    Matrix Matrix::operator*=(Matrix& mat2){
+        Matrix mat;
+        return mat;
+    }
+
 
     Matrix Matrix::operator*(const Matrix& mat2) const{
         Matrix mat;
@@ -94,6 +99,11 @@ namespace zich{
     Matrix operator*(double scalar, Matrix &mat){
         Matrix m;
         return m;   
+    }
+
+    Matrix operator*(Matrix&  mat, double scalar){
+        Matrix m;
+        return m; 
     }
 
    istream& operator>>(istream& os,const Matrix &mat){ // operator input >>
