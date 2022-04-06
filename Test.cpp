@@ -30,17 +30,17 @@ TEST_CASE("Good input") {
 
     vector<double> vec3 = {0, 0, 0, 0, 0, 0, 0, 0, 0};
     Matrix ans3(vec3, 3,3);
+    mat1 *= -3;
     CHECK(((mat1+ mat2) == ans3));
 
     vector<double> vec4 = {-3, 0, 0, 0, -3, 0, 0, 0, -3};
     Matrix ans4(vec4, 3,3);
-    mat1 *=3; 
     CHECK((mat1 == ans4));
 
 
     vector<double> vec5 = {6, 0, 0, 0, 6, 0, 0, 0, 6};
     Matrix ans5(vec5, 3,3);
-    CHECK(((mat1- mat2) == ans5));
+    CHECK(((mat2- mat1) == ans5));
 
     vector<double> vec6 = {-3, 0, 0, 0, -3, 0, 0, 0, -3};
     Matrix ans6(vec6, 3,3);
@@ -50,14 +50,19 @@ TEST_CASE("Good input") {
     Matrix ans7(vec7, 3,3);
     CHECK(((4*mat2) == ans7));
 
-    vector<double> vec8 = {5, 0, 0, 0, 5, 0, 0, 0, 5};
+    vector<double> vec8 = {5, 2, 2, 2, 5, 2, 2, 2, 5};
     Matrix ans8(vec8, 3,3);
     mat2+=2;
     CHECK(((mat2) == ans8));
     
-    vector<double> vec9 = {2, 0, 0, 0, 2, 0, 0, 0, 2};
+    vector<double> vec9 = {2, 2, 2, 2, 2, 2, 2, 2, 2};
     Matrix ans9(vec9, 3,3);
     CHECK(((mat2+mat1) == ans9));
+
+    vector<double> vec10 = {4, 1, 1, 1, 4, 1, 1, 1, 4};
+    Matrix ans10(vec10, 3,3);
+    (mat2--);
+    CHECK((mat2 == ans10)); // check -- operator
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -66,9 +71,9 @@ TEST_CASE("Good input") {
     Matrix mat3(m1, 4,3);
     Matrix mat4(m2, 5,4);
 
-    vector<double> vec10 = {6, 0, 0, 0, 0, 6, 0, 0, 0, 0, 6, 0, 0, 0, 0, 6};
-    Matrix ans10(vec10, 4,4);
-    CHECK(((mat4 * mat3) == ans10) );// Multiply matrix that the col number of mat4 == the row number of mat3
+    vector<double> vec11 = {6, 0, 0, 0, 0, 6, 0, 0, 0, 0, 6, 0, 0, 0, 0, 6};
+    Matrix ans11(vec11, 4,4);
+    CHECK(((mat4 * mat3) == ans11) );// Multiply matrix that the col number of mat4 == the row number of mat3
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -78,23 +83,25 @@ TEST_CASE("Good input") {
         Matrix mat5(m3,3,3);
         Matrix mat6(m4, 3,3);
 
+        
             
         vector<double> m3_plus_one = {i+1, 1, 1, i+2, i+1, i+1, 1, 1, i+1};
         Matrix ans11(m3_plus_one, 3,3);
-        CHECK(((mat5++)==ans11)); // check ++ operator
+        (mat5++);
+        CHECK(((mat5)==ans11)); // check ++ operator
 
 
         vector<double> m4_minus_unary = {-i, 0, -i, 0, -i, 0, -i, -i, 0};
         Matrix ans12(m4_minus_unary, 3,3);
         CHECK(((-mat6)==ans12)); // check - unary
 
-        vector<double> m3_mul_scalar = {(2)*i, 0, 0, (2)*(i+1), 2*i, 2*i, 0, 0, 2*i};
+        vector<double> m3_mul_scalar = {(2)*(i+1), 2, 2, (2)*(i+2), 2*(i+1), 2*(i+1), 2, 2, 2*(i+1)};
         Matrix ans13(m3_mul_scalar, 3,3);
-        CHECK(((2*mat6)==ans13)); // check mat5*scalar
+        CHECK(((2*mat5)==ans13)); // check mat5*scalar
 
         CHECK((mat5 != mat6)); //check !=
 
-    ///////////////////////////////////////////////////////////////////////////////
+    // // ///////////////////////////////////////////////////////////////////////////////
 
         vector<double> m5 = {i, 0, 0, i+1 , i, i, 0, 0, i};
         vector<double> m6 = {i+1, 1, 1, i+2, i+1, i+1, 1, 1, i+1};
@@ -102,10 +109,10 @@ TEST_CASE("Good input") {
         Matrix mat8(m6, 3,3);
 
         CHECK((mat8 > mat7)); // check >
-        CHECK((mat8 < mat7)); // check <
+        CHECK((mat7 < mat8)); // check <
 
         Matrix ans14(m5, 3,3);
-        CHECK(((+mat5) == ans14)); // check + unary
+        CHECK(((+mat7) == ans14)); // check + unary
 
     }
 
